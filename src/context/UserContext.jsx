@@ -21,8 +21,7 @@ export function UserProvider(props){
      return <UserContext.Provider value={ {loggedInUser, login, logout} } >
      
      {props.children}
-     
-     </UserContext.Provider>
 
+     </UserContext.Provider>
 
 }
