@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
@@ -6,7 +6,7 @@ import { UserContext } from "../context/UserContext";
 function RegisterPage(){
 
     //navigate functionality
-    const navigate = useNavigate
+    const navigate = useNavigate();
     //local pieces of state
     const [username, setUsername]= useState("");
     const [password, setPassword]= useState("");    
@@ -15,8 +15,6 @@ function RegisterPage(){
     //global pieces of state from context file
     const [show, setShow] = useState(false);
     const {loggedInUser, login, logout} = useContext(UserContext)
-
-
         
     return(
         <>
@@ -37,9 +35,9 @@ function RegisterPage(){
         <label htmlFor="password">Password</label>
         <input             
             value={password}
-            onChange={(e) => {
+            onChange={ (e) => {
               setPassword(e.target.value);
-            }}
+            } }
             id="password"
             type={show === true ? "text" : "password"}     
         />
@@ -47,7 +45,7 @@ function RegisterPage(){
             <label htmlFor="check-box">Show Password</label>
             <input 
             value={show}
-            onChange={ ()=>{ setShow(true)} }
+            onChange={ (e)=>{ setShow(e.target.checked)} }
             type="checkbox" 
             name="register-checkbox" 
             id="check-box" 
@@ -69,9 +67,11 @@ function RegisterPage(){
         <div>
         <button 
             onClick={ (e) => { 
-                if(setPassword.value === setConfirm.value){ 
-                    navigate("/search") }
-                    } }>Submit
+            e.preventDefault()
+            if(password === confirm){ 
+                    navigate("/search") 
+                }
+            } }>Submit
         </button>
         </div>
         
