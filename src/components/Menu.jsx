@@ -1,10 +1,8 @@
-import React  from "react";
-import { NavLink, useNavigate } from "react-router-dom";
 
-function Menu(){
+import { NavLink } from "react-router-dom";
 
-    const navigate = useNavigate();
-
+function Menu(){ 
+    
     return(
         <nav>
             <ul>
@@ -15,19 +13,16 @@ function Menu(){
                     <NavLink to="/favorites">Favorites</NavLink>
                 </li>
                 <li>
-                    <button className="btn btn-primary" onClick={() => navigate("/login")}>Login</button>;
+                    <NavLink to="/login">Login</NavLink>
                 </li>
                 <li>
-                    <button className="btn btn-primary" onClick={() => navigate("/login")}>Logout</button>;
-                </li>
-                <li>
-                    <button className="btn btn-primary" onClick={() => navigate("/register")}>Register</button>;
+                    <NavLink to="/register">Register</NavLink>
                 </li>
             </ul>
         </nav>
-        // need to conditional render
-        // login or register button
-        // or search favorites logout
+
+        // if not logged in dont show search or FavoritesContext
+        // if logged in show search/favorites and logout
     )
 }
 

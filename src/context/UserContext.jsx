@@ -25,3 +25,8 @@ export function UserProvider(props){
      </UserContext.Provider>
 
 }
+
+// export function useUser() {
+//   const context = useContext(UserContext);
+//   return context;
+// }

@@ -1,6 +1,9 @@
 
+import React, { useEffect } from "react";
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+
 
 import Menu from "./components/Menu";
 import LoginPage from "./components/LoginPage";
@@ -9,6 +12,7 @@ import RegisterPage from "./components/RegisterPage";
 import SearchPage from "./components/SearchPage";
 
 function App() {
+
   return (
     <main>
       <Router>

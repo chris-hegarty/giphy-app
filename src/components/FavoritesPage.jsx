@@ -3,7 +3,7 @@ import React from "react";
 function FavoritesPage(){
 
     return(
-        <div>EMMANUEL DONT DO IT</div>
+        <div>login page</div>
     )
 }
 
