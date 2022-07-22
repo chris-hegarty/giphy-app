@@ -33,7 +33,7 @@ function useAxios(url){
         init();
 
     },[url])
-    console.log(url);
+
     
     return {data, error, loading}
 }

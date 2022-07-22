@@ -8,13 +8,12 @@ function SearchPage(){
    const navigate = useNavigate();
     const[searchResults, setSearchResults] = useState([]);
    const[rating, setRating] = useState();
-    const [data, setData] = useState(null);
+    // const [data, setData] = useState(null);
     // const [error, setError] = useState(null);
     // const [loading, setLoading] = useState(true);
     const [url, setUrl] = useState();
     const [query, setQuery] = useState("");
     const { data: gif, loading, error } = useAxios(url);
-    console.log(gif);
 
     return(
         <>
@@ -59,6 +58,14 @@ function SearchPage(){
             </button>
         </form>
         <section className="gifs-display">
+
+            <div className="one-gif">
+                {
+
+
+
+                }
+            </div>
 
         </section>
         </>
