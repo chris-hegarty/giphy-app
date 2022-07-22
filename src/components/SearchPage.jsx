@@ -15,6 +15,8 @@ function SearchPage(){
     const [query, setQuery] = useState("");
     const { data: gif, loading, error } = useAxios(url);
 
+    console.log(gif);
+
     return(
         <>
         <form>
@@ -51,6 +53,7 @@ function SearchPage(){
                 onClick={(e)=>{
                     e.preventDefault();
                     setUrl(`&q=${searchResults}&rating=${rating}`);
+                    console.log(); 
                 }}
             
                 >
@@ -58,13 +61,13 @@ function SearchPage(){
             </button>
         </form>
         <section className="gifs-display">
-
+                
             <div className="one-gif">
-                {
+                <h3></h3>
+                <img src="" alt="" />
 
 
-
-                }
+                
             </div>
 
         </section>
