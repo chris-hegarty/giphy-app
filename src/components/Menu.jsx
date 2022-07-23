@@ -32,50 +32,50 @@ function Menu(){
         {/* //start here with list items/menu items you want logged in users to see. Note: starting with not logged in users will not work. 
         //For cleaner code, use && pattern.
         //Still need parent element...even though it's in the middle of the page ????????????>?? */}
-        {loggedInUser && (
+            {loggedInUser && (
+                    <>
+                    <li>
+                        <NavLink to={"/search"}>Search</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to={"/favorites"}>Favorites</NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                        // on clicking logout, fire 
+                        // -the logout function from UserContext
+                        // -the clear function from FavoritesContext
+                        //- And set search results back to an empty array with setSearchResults from Search Results context
+                        //Then return them to the login page.
+                        onClick={() => {
+                            clear()
+                            setSearchResults()
+                            logout()
+                        }}
+                        //  redirect back to login page
+                        to={"/logout"}
+                        >Logout</NavLink>
+                    </li>
+                    </>
+                )
+            }
+            {/* Now set what the NOT loggedin user sees:  */}
+            {!loggedInUser && (
                 <>
-                <li>
-                    <NavLink to={"/search"}>Search</NavLink>
-                </li>
-                <li>
-                    <NavLink to={"/favorites"}>Favorites</NavLink>
-                </li>
-                <li>
-                    <NavLink 
-                    // on clicking logout, fire 
-                    // -the logout function from UserContext
-                    // -the clear function from FavoritesContext
-                    //- And set search results back to an empty array with setSearchResults from Search Results context
-                    onClick={() => {
-                        clear()
-                        setSearchResults()
-                        logout()
-                    }}
-                    //  redirect back to login page
-                    to={"/logout"}
-                    >Logout</NavLink>
-                </li>
+                    <li>
+                        <NavLink to="/login">
+                            Login
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/register">
+                            Register
+                        </NavLink>
+
+                    </li>
                 </>
-            )
-        }
-        {/* Now set what the NOT loggedin user sees:  */}
-        {!loggedInUser && (
-            <>
-                <li>
-                    <NavLink>
-
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink>
-
-                    </NavLink>
-
-                </li>
-            </>
-        )
-
-        }
+                )
+            }
             </ul>
         </nav>
 
