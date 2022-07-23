@@ -47,8 +47,6 @@ function ProtectedRoute(requiresLogin, component){
    ,[requiresLogin]
    )
 
-
-
    return(
         <>
            {/* if not authorized, use "Navigate" to call redirect function to go to login or search */}
@@ -56,13 +54,9 @@ function ProtectedRoute(requiresLogin, component){
             {/* if authorized, navigate to component. Wrap the component in fake html parent element */}
             {authorized && <>{component}</> }
         </>
-
-
-    
-
     
    )
 
-
-
 }
+
+export default ProtectedRoute;
