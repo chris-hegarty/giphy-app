@@ -23,6 +23,7 @@ function useAxios(url){
                     title: gif.title,
                     url: gif.images.original.url,
                     gif_id: gif.id
+                           
                 })))
             } catch(e) {
                 setError(e);
@@ -31,6 +32,7 @@ function useAxios(url){
             }
         }
         init();
+
 
     },[url])
 

@@ -2,6 +2,8 @@
 import { NavLink } from "react-router-dom";
 
 function Menu(){ 
+    //const loggedInUser && !loggedUser from conetxt
+    // logout redirect to login on click clears set
     
     return(
         <nav>

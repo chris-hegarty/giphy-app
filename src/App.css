@@ -1,0 +1,15 @@
+* {
+    border: 1px solid #9b9898;
+}
+html {
+    box-sizing: border-box;
+}
+.flex {
+    display: flex;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-basis {
+    flex-basis: 20%
+}

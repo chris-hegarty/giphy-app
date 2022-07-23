@@ -2,6 +2,7 @@ import React, {useState, createContext} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/SearchContext";
 import useAxios from "../hooks/useAxios"
+import { FaHeart } from 'react-icons/fa';
 
 function SearchPage(){
 
@@ -13,9 +14,7 @@ function SearchPage(){
     // const [loading, setLoading] = useState(true);
     const [url, setUrl] = useState();
     const [query, setQuery] = useState("");
-    const { data: gif, loading, error } = useAxios(url);
-
-    console.log(gif);
+    const { data, loading, error } = useAxios(url);
 
     return(
         <>
@@ -60,17 +59,30 @@ function SearchPage(){
                 SUBMIT
             </button>
         </form>
-        <section className="gifs-display">
-                
-            <div className="one-gif">
-                <h3></h3>
-                <img src="" alt="" />
+        <div className="parent-section flex flex-wrap">
+            {data && data.map((data, idx) => (
+            <div key={idx}>
+                <img
+                    onClick={(data) => (data)}
+                    src={data.url} 
+                    alt={data.title}
+                    />
 
-
-                
+                    {
+                    <button 
+                    className="favorite-icon"
+                    onClick={( (e)=>{
+                        
+                    }  
+                    )}
+                    >
+                        < FaHeart />
+                    </button>
+            }
             </div>
-
-        </section>
+            
+            ))}
+        </div>
         </>
         
     )
