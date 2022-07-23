@@ -10,6 +10,7 @@ import LoginPage from "./components/LoginPage";
 import FavoritesPage from "./components/FavoritesPage";
 import RegisterPage from "./components/RegisterPage";
 import SearchPage from "./components/SearchPage";
+import ProtectedRoute from "./shared/ProtectedRoute"
 
 function App() {
 
@@ -19,15 +20,22 @@ function App() {
         <header>
           <Menu />
         </header>
+
         <Routes>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/register" element={<RegisterPage />}></Route>
-          <Route path="/search" element={<SearchPage />}></Route>
-          <Route path="/favorites" element={<FavoritesPage />}></Route>
-          <Route path="*" element={<Navigate to="/login" />}></Route>
+
+          <Route path="/login" element={<ProtectedRoute requiresLogin={false} component={<LoginPage />} />} />
+
+          <Route path="/register" element={<ProtectedRoute requiresLogin={false} component={<RegisterPage />} />} />
+
+          <Route path="/search" element={<ProtectedRoute requiresLogin={true} component={<SearchPage />} />} />
+
+          <Route path="/favorites" element={<ProtectedRoute requiresLogin={true} component={<FavoritesPage />} />} />
+
+          <Route path="*" element={<Navigate to="/login" />}> </Route>
+
         </Routes>
       </Router>
-    </main>
+    </main >
   );
 }
 
