@@ -1,22 +1,21 @@
-import React, {useState, createContext} from "react";
+import React, {useState, useContext} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/SearchContext";
+import { FavoritesContext } from "../context/FavoritesContext";
 import useAxios from "../hooks/useAxios"
 import SingleGif from "./SingleGif"
-
-
 
 function SearchPage(){
 
    const navigate = useNavigate();
    const[searchResults, setSearchResults] = useState([]);
    const[rating, setRating] = useState();
-    // const [data, setData] = useState(null);
-    // const [error, setError] = useState(null);
-    // const [loading, setLoading] = useState(true);
     const [url, setUrl] = useState();
-    const [query, setQuery] = useState("");
     const { data:gif, loading, error } = useAxios(url);
+
+    //Need favorites context to pass down into SingleGif:
+   const {favorites, add, remove} = useContext(FavoritesContext);
+    console.log(gif);
 
     return(
         <>
@@ -54,7 +53,6 @@ function SearchPage(){
                     onClick={(e)=>{
                         e.preventDefault();
                         setUrl(`&q=${searchResults}&rating=${rating}`);
-                        console.log(); 
                     }}
                 
                     >
@@ -69,7 +67,7 @@ function SearchPage(){
                         gif={g}
                         add={gif.add}
                         remove={gif.remove}
-                        key={gif.id}
+                        key={g.id}
                     />
                     </>
                     )

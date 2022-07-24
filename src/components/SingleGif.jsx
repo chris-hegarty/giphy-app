@@ -2,10 +2,9 @@ import React from "react";
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 
-function SingleGif({ gif, add, remove,isFavorite,  }){
+function SingleGif({ gif, add, remove, isFavorite,  }){
 
 return(
-    
     
         <div>
             <h3>{gif.title}</h3>
@@ -20,7 +19,7 @@ return(
                         <button
                             className="remove-favorite"
                             onClick={((e) => {
-
+                                remove(gif.id);
                             }
                             )}
                         >
@@ -30,7 +29,7 @@ return(
                     <button
                         className="add-favorite"
                         onClick={((e) => {
-
+                            add(gif);
                         }
                         )}
                     >
