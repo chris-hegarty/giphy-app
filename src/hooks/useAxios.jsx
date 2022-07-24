@@ -19,23 +19,26 @@ function useAxios(url){
             setData(null);
             try {
                 const response = await axios.get(baseUrl + url);
-                console.log(response);
+                // console.log(response.data.data);
                 setData(response.data.data.map( gif => ({
                     title: gif.title,
                     url: gif.images.original.url,
-                    gif_id: gif.id
-                           
+                    gif_id: gif.id           
                 })))
+
             } catch(e) {
                 setError(e);
             } finally {
                 setLoading(false)
             }
+            
         }
+
         init();
 
 
     },[url])
+    
 
     
     return {data, error, loading}

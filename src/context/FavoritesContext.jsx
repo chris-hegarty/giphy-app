@@ -6,13 +6,16 @@ export const FavoritesContext = createContext(null);
 export function FavoritesProvider(props){
 // -Favorites
 const [favorites, setFavorites]= useState([]);
+
 // -Add (function) - takes in gif and adds to the array.
 const add = useCallback(
     // take the gif and do something to it
     (gif) => {
         setFavorites( (curr) => [...curr, gif]);
     }, [setFavorites]
+    
 );
+
 //   removeById: useCallback((id) =>
 //       setValue((arr) => arr.filter((v) => v && v.id !== id))
 //     ),
@@ -34,5 +37,6 @@ return (
         {props.children}
         
     </FavoritesContext.Provider>
+    
 )
 }
