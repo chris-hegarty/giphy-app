@@ -27,8 +27,9 @@ function Menu(){
     //Login
     
     return(
-        <nav>
-            <ul>
+        <>
+        <nav className="flex center">
+            <ul className="flex gap-20">
         {/* //start here with list items/menu items you want logged in users to see. Note: starting with not logged in users will not work. 
         //For cleaner code, use && pattern.
         //Still need parent element...even though it's in the middle of the page ????????????>?? */}
@@ -78,31 +79,14 @@ function Menu(){
             }
             </ul>
         </nav>
+        </>
 
-
-
-
-
-
-
-
-        // {(!loggedInUser) ?? (
-        //     <>
+        /* //     <>
             
         //     </>
         // )
 
         // }
-
-
-
-
-
-
-
-
-
-
 
         // <nav>
         //     <ul>
@@ -122,7 +106,7 @@ function Menu(){
         // </nav>
 
         // if not logged in dont show search or FavoritesContext
-        // if logged in show search/favorites and logout
+        // if logged in show search/favorites and logout */
     )
 }
 

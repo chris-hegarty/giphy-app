@@ -24,7 +24,11 @@ import { UserContext } from "../context/UserContext";
     }
 /> } */
 
-function ProtectedRoute(requiresLogin, component){
+// down after return, here is what is going that has to be written here because commenting makes no sense at all anymore
+//If compnenet functyion comes back trye...go to component
+//if iit does nit comne bacjk as true, navigate to the reidrecv345 fdsijnerstoijfadsDFGS
+
+function ProtectedRoute({requiresLogin, component}){
     
     //bring loggedInUser state from UserContext
    const{loggedInUser} = useContext(UserContext)
@@ -49,11 +53,13 @@ function ProtectedRoute(requiresLogin, component){
 
    return(
         <>
-           {/* if not authorized, use "Navigate" to call redirect function to go to login or search */}
+        
+            { authorized && <>{ component }</> }
+         
             {!authorized && <Navigate to={redirect} />}
-            {/* if authorized, navigate to component. Wrap the component in fake html parent element */}
-            {authorized && <>{component}</> }
-        </>
+       </>
+
+        
     
    )
 

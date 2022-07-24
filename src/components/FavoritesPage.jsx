@@ -16,8 +16,9 @@ function FavoritesPage(props){
     const loggedInUser = useContext(UserContext)
 
     return(
+        <>
         <div className="parent-section flex flex-wrap">
-            {data && data.map((data, idx) => (
+            {/* {data && data.map((data, idx) => (
             <div key={idx}>
                 <img
                     onClick={(data) => (data)}
@@ -37,8 +38,9 @@ function FavoritesPage(props){
                 </button>
                 }           
             </div>
-            ))}
+            ))} */}
         </div>
+        </>
     )
 }
 

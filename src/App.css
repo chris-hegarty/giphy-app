@@ -1,5 +1,7 @@
 * {
     border: 1px solid #9b9898;
+    margin: 0;
+    padding: 0%;
 }
 html {
     box-sizing: border-box;
@@ -7,9 +9,30 @@ html {
 .flex {
     display: flex;
 }
+.center {
+    justify-content: center;
+}
+.gap-10 {
+    gap: 10px
+}
+.gap-20 {
+    gap: 20px
+}
 .flex-wrap {
     flex-wrap: wrap;
 }
 .flex-basis {
     flex-basis: 20%
+}
+svg {
+    font-size: 2rem;
+}
+.add-favorite svg {
+    fill: #9f9f9f;
+}
+.remove-favorite svg {
+    fill: red;
+}
+li {
+    list-style-type: none;
 }

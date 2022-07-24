@@ -3,6 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { SearchContext } from "../context/SearchContext";
 import useAxios from "../hooks/useAxios"
 import { FaHeart } from 'react-icons/fa';
+import { AiOutlineHeart } from 'react-icons/ai';
+import { AiFillHeart } from 'react-icons/ai';
 
 function SearchPage(){
 
@@ -69,15 +71,28 @@ function SearchPage(){
                     />
 
                     {
+                        <>
                     <button 
-                    className="favorite-icon"
+                    className="add-favorite"
                     onClick={( (e)=>{
                         
                     }  
                     )}
                     >
-                        < FaHeart />
+                                < AiOutlineHeart />
                     </button>
+                    <button
+                                className="remove-favorite"
+                                onClick={((e) => {
+
+                                }
+                                )}
+                    >
+                                < AiFillHeart />
+                    </button>
+                    </>
+                    
+                    
             }
             </div>
             

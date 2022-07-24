@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
@@ -13,29 +13,25 @@ import ProtectedRoute from "./shared/ProtectedRoute"
 function App() {
 
   return (
-    <>
+    <Router>
 
-      <Router>
-
-        <Menu />
+      <Menu />
 
 
-        <Routes>
+      <Routes>
 
-          <Route path="/login" element={<ProtectedRoute requiresLogin={false} component={<LoginPage />} />} />
+        <Route path="/login" element={<ProtectedRoute requiresLogin={false} component={<LoginPage />} />} />
 
-          <Route path="/register" element={<ProtectedRoute requiresLogin={false} component={<RegisterPage />} />} />
+        <Route path="/register" element={<ProtectedRoute requiresLogin={false} component={<RegisterPage />} />} />
 
-          <Route path="/search" element={<ProtectedRoute requiresLogin={true} component={<SearchPage />} />} />
+        <Route path="/search" element={<ProtectedRoute requiresLogin={true} component={<SearchPage />} />} />
 
-          <Route path="/favorites" element={<ProtectedRoute requiresLogin={true} component={<FavoritesPage />} />} />
+        <Route path="/favorites" element={<ProtectedRoute requiresLogin={true} component={<FavoritesPage />} />} />
 
-          <Route path="*" element={<Navigate to="/login" />}> </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
 
-        </Routes>
-      </Router>
-
-    </>
+      </Routes>
+    </Router>
   );
 }
 
