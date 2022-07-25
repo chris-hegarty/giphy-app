@@ -7,11 +7,11 @@ const{gif_id, title, url} = gif
 return(
     
         <div>
-            <h3>{gif.title}</h3>
+            <h3>{title}</h3>
             <img
                 onClick={(gif) => (gif)}
-                src={gif.url}
-                alt={gif.title}
+                src={url}
+                alt={title}
             />
             {
                 <>
@@ -19,7 +19,7 @@ return(
                         <button
                             className="remove-favorite"
                             onClick={((e) => {
-                                remove(gif.id);
+                                remove(gif_id);
                             }
                             )}
                         >
