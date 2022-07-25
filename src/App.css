@@ -9,6 +9,9 @@ html {
 .flex {
     display: flex;
 }
+.column {
+    flex-direction: column;
+}
 .center {
     justify-content: center;
 }
@@ -23,6 +26,12 @@ html {
 }
 .flex-basis {
     flex-basis: 20%
+}
+.grow {
+    flex-grow: 1;
+}
+.space-between {
+    justify-content: space-between;
 }
 svg {
     font-size: 2rem;

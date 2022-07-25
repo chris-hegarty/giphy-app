@@ -3,7 +3,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
 
 function SingleGif({ gif, add, remove, isFavorite,  }){
-
+const{gif_id, title, url} = gif
 return(
     
         <div>

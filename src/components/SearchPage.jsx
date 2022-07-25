@@ -8,7 +8,7 @@ import SingleGif from "./SingleGif"
 function SearchPage(){
 
    const navigate = useNavigate();
-   const[searchResults, setSearchResults] = useState([]);
+   const{searchResults, setSearchResults} = useContext(SearchContext);
    const[rating, setRating] = useState();
     const [url, setUrl] = useState();
     const { data:gif, loading, error } = useAxios(url);
@@ -19,7 +19,8 @@ function SearchPage(){
 
     return(
         <>
-            <form>
+            <form className="flex">
+                <div className="search-input grow flex column">
                 <label htmlFor="search-bar">Search</label>
                 <input 
                 value={searchResults}
@@ -30,8 +31,9 @@ function SearchPage(){
                 name="searchBar" 
                 id="search-bar" 
                 />
-
-                <label htmlFor="rating-dropdown"></label>
+                </div>
+                <div className="rating-submit flex column">
+                <label htmlFor="rating-dropdown">Choose a Rating:</label>
                 <select 
                 name="rating" 
                 id="rating-dropdown" 
@@ -47,6 +49,7 @@ function SearchPage(){
                     <option value="pg-13">PG-13</option>
                     <option value="r">R</option>
                 </select>
+                </div>
 
                 <button
                     type="submit"
@@ -58,6 +61,7 @@ function SearchPage(){
                     >
                     SUBMIT
                 </button>
+                
             </form>
             <div className="parent-section flex flex-wrap">
                 
