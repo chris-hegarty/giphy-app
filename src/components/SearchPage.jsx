@@ -1,21 +1,25 @@
-import React, {useState, useContext} from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { SearchContext } from "../context/SearchContext";
 import { FavoritesContext } from "../context/FavoritesContext";
+import { NavLink, useNavigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios"
 import SingleGif from "./SingleGif"
 
-function SearchPage(){
+function SearchPage(props){
 
    const navigate = useNavigate();
    const{searchResults, setSearchResults} = useContext(SearchContext);
+    const { favorites, add, remove } = useContext(FavoritesContext);
    const[rating, setRating] = useState();
     const [url, setUrl] = useState();
-    const { data:gif, loading, error } = useAxios(url);
+    const { data:gifs, loading, error } = useAxios(url);
+    console.log(gifs);
 
-    //Need favorites context to pass down into SingleGif:
-   const {favorites, add, remove} = useContext(FavoritesContext);
-    console.log(gif);
+    useEffect(() => {
+        if (gifs) {
+            setSearchResults(gifs);
+        }
+    }, [gifs, setSearchResults]);
 
     return(
         <>
@@ -64,13 +68,14 @@ function SearchPage(){
                 
             </form>
             <div className="parent-section flex flex-wrap">
+                {/* if search results  */}
                 
-                {gif && gif.map((g) => (
+                {gifs && gifs.map((g) => (
                     <>
                     <SingleGif 
                         gif={g}
-                        add={gif.add}
-                        remove={gif.remove}
+                        add={add}
+                        remove={remove}
                         key={g.id}
                     />
                     </>

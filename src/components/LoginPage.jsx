@@ -52,10 +52,11 @@ function LoginPage() {
                 <div>
                     <button
                         onClick={(e) => {
-                            e.preventDefault()
-                            navigate("/search")
+                            e.preventDefault();
+                            navigate("/search");
+                            console.log(e);
                         }}>Submit
-                    </button>
+                    </button>   
                 </div>
             </form>
         </>

@@ -36,12 +36,8 @@ return(
                         < AiOutlineHeart />
                     </button>
                 </>
-
-
             }
         </div>    
-    
-    
     
 )
 
