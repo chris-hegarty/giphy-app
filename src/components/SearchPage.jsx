@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { SearchContext } from "../context/SearchContext";
 import { FavoritesContext } from "../context/FavoritesContext";
-import { NavLink, useNavigate } from "react-router-dom";
+// import { NavLink, useNavigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios"
 import SingleGif from "./SingleGif"
 
 function SearchPage(props){
 
-   const navigate = useNavigate();
+//    const navigate = useNavigate();
    const{searchResults, setSearchResults} = useContext(SearchContext);
     const { favorites, add, remove } = useContext(FavoritesContext);
    const[rating, setRating] = useState();

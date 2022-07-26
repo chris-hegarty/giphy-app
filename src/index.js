@@ -6,16 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { UserProvider } from './context/UserContext';
 import { SearchProvider } from './context/SearchContext';
 import { FavoritesProvider } from './context/FavoritesContext';
+import ErrorBoundary from "./ErrorBoundary";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <UserProvider>
-    <SearchProvider>
-      <FavoritesProvider>
-        <App />
-      </FavoritesProvider>
-    </SearchProvider>
-  </UserProvider>
+  <ErrorBoundary>
+    <UserProvider>
+      <SearchProvider>
+        <FavoritesProvider>
+          <App />
+        </FavoritesProvider>
+      </SearchProvider>
+    </UserProvider>
+  </ErrorBoundary>
 );
 
 // If you want to start measuring performance in your app, pass a function
