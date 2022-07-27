@@ -13,19 +13,20 @@ return(
                 src={url}
                 alt={title}
             />
+            {/* how do I keep the if and else if words from appearing on the page... */}
+                if({isFavorite}){ 
+                    <button className="remove-favorite" onClick={ () => { remove(gif_id) } } >
+                        < AiFillHeart />
+                    </button>
 
-            if({isFavorite}){
-                <button className="remove-favorite" onClick={ () => { remove(gif_id) } } >
-                    < AiFillHeart />
-                </button>
-            }
-                
-            if({!isFavorite}){
-            <button className="add-favorite" onClick={ () => { add(gif) } } >
-                < AiOutlineHeart />
-            </button>
-            }                                                     
-            
+                } else if({!isFavorite}){
+
+                    <button className="add-favorite" onClick={ () => { add(gif) } } >
+                        < AiOutlineHeart />
+                    </button>
+
+                }    
+                                                           
         </div>    
     
     )   
