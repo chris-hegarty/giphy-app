@@ -14,7 +14,14 @@ function SearchPage(){
     const[rating, setRating] = useState("g");
     const [url, setUrl] = useState("");
     const { data:gifs, error } = useAxios(url);
-    // console.log(gifs);
+    //Here, you are taking the "favorites" array from Favorites Context.
+    //You are mapping over each one and getting its ID
+    //Then you are "memoizing" the result b/c it eventually could be a heavy computation.
+    //You are then going to use "favoriteList" in SingleGif to keep track of which single gif has been favorited.
+      const favoriteList = useMemo(
+    () => favorites.map((val) => val.gif_id),
+        [favorites]
+  );
 
     useEffect(() => {
         if (gifs) {
@@ -79,6 +86,12 @@ function SearchPage(){
                         add={add}
                         remove={remove}
                         key={val.gif_id}
+                        //You want to keep track of whether this single gif is a favorite or not.
+                        //SO you set up a prop (React word for variable you want to keep track of) called "isFavorite"
+                        //You then grab the "favoriteList" array you set up at the top of this file.
+                        //And you say that "isFavorite" will be true if that gifId is in the list.
+                        //YOu can then use this boolean in a conditional in the singleGif component.
+                        isFavorite={ favoriteList.includes(val.gif_id)  }
                     />
                 )
                 )
