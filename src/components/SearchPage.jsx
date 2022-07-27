@@ -5,14 +5,16 @@ import { FavoritesContext } from "../context/FavoritesContext";
 import useAxios from "../hooks/useAxios"
 import SingleGif from "./SingleGif"
 
-function SearchPage(props){
+function SearchPage(){
 
 //    const navigate = useNavigate();
-   const{searchResults, setSearchResults} = useContext(SearchContext);
+    const[search, setSearch] = useState();
+    const{searchResults, setSearchResults} = useContext(SearchContext);
     const { favorites, add, remove } = useContext(FavoritesContext);
-   const[rating, setRating] = useState();
-    const [url, setUrl] = useState();
-    const { data:gifs, loading, error } = useAxios(url);
+    const[rating, setRating] = useState("g");
+    const [url, setUrl] = useState("");
+    const { data:gifs, error } = useAxios(url);
+    // console.log(gifs);
     console.log(gifs);
 
     useEffect(() => {
@@ -27,9 +29,10 @@ function SearchPage(props){
                 <div className="search-input grow flex column">
                 <label htmlFor="search-bar">Search</label>
                 <input 
-                value={searchResults}
+                value={search}
                 onChange={(e)=>{
-                    setSearchResults(e.target.value);
+                    setSearchResults(e.target.value)
+                    console.log(search);
                 }}
                 type="search" 
                 name="searchBar" 
@@ -56,30 +59,31 @@ function SearchPage(props){
                 </div>
 
                 <button
-                    type="submit"
                     onClick={(e)=>{
                         e.preventDefault();
-                        setUrl(`&q=${searchResults}&rating=${rating}`);
+
+                        setUrl(`${rating}&q=${search}`);
+                        
+                        console.log(url);
                     }}
-                
+                    type="submit"
                     >
                     SUBMIT
                 </button>
                 
             </form>
             <div className="parent-section flex flex-wrap">
-                {/* if search results  */}
-                
-                {gifs && gifs.map((g) => (
-                    <>
+                {error && error}
+                {gifs &&
+                    gifs.length > 0 &&
+                gifs.map((val) => (
                     <SingleGif 
-                        gif={g}
+                        gif={val}
                         add={add}
                         remove={remove}
-                        key={g.id}
+                        key={val.gif_id}
                     />
-                    </>
-                    )
+                )
                 )
             }
             </div>
