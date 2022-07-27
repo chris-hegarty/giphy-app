@@ -14,13 +14,13 @@ return(
                 alt={title}
             />
 
-            if(isFavorite){
+            if({isFavorite}){
                 <button className="remove-favorite" onClick={ () => { remove(gif_id) } } >
                     < AiFillHeart />
                 </button>
             }
                 
-            if(!isFavorite){
+            if({!isFavorite}){
             <button className="add-favorite" onClick={ () => { add(gif) } } >
                 < AiOutlineHeart />
             </button>
