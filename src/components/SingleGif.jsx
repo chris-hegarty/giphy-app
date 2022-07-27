@@ -13,19 +13,22 @@ return(
                 src={url}
                 alt={title}
             />
-            {/* how do I keep the if and else if words from appearing on the page... */}
-                if({isFavorite}){ 
-                    <button className="remove-favorite" onClick={ () => { remove(gif_id) } } >
-                        < AiFillHeart />
-                    </button>
+        {/* If you want to use the if else pattern you have to have the returns inside of it. Basically the only way you can use an if else and not use the { } and && is if it's a situation where you render one of two things total. In our situation it's only conditionally rendering one part of the component with the rest always being there. So we have to use the && pattern. */}
+        
+                {isFavorite && (
+                        
+                            <button className="remove-favorite" onClick={ () => { remove(gif_id) } } >
+                                < AiFillHeart />
+                            </button>
+                )}
 
-                } else if({!isFavorite}){
+                {!isFavorite && (     
 
-                    <button className="add-favorite" onClick={ () => { add(gif) } } >
-                        < AiOutlineHeart />
-                    </button>
+                            <button className="add-favorite" onClick={ () => { add(gif) } } >
+                                < AiOutlineHeart />
+                            </button>
 
-                }    
+                )}      
                                                            
         </div>    
     
