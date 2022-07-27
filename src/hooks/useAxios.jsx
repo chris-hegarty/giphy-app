@@ -27,7 +27,6 @@ function useAxios(url){
                 }));
                 setData(gifs);
                 console.log(response.data.data);
-                console.log(url);
 
             } catch(e) {
                 setError("Something went wrong.");

@@ -8,14 +8,13 @@ import SingleGif from "./SingleGif"
 function SearchPage(){
 
 //    const navigate = useNavigate();
-    const[search, setSearch] = useState();
+    const[search, setSearch] = useState("");
     const{searchResults, setSearchResults} = useContext(SearchContext);
     const { favorites, add, remove } = useContext(FavoritesContext);
     const[rating, setRating] = useState("g");
     const [url, setUrl] = useState("");
     const { data:gifs, error } = useAxios(url);
     // console.log(gifs);
-    console.log(gifs);
 
     useEffect(() => {
         if (gifs) {
@@ -31,8 +30,7 @@ function SearchPage(){
                 <input 
                 value={search}
                 onChange={(e)=>{
-                    setSearchResults(e.target.value)
-                    console.log(search);
+                    setSearch(e.target.value)
                 }}
                 type="search" 
                 name="searchBar" 
@@ -64,7 +62,6 @@ function SearchPage(){
 
                         setUrl(`${rating}&q=${search}`);
                         
-                        console.log(url);
                     }}
                     type="submit"
                     >
