@@ -103,3 +103,17 @@ function SearchPage(){
 }
 
 export default SearchPage
+
+//PATTERN for renaming an object key:
+
+// As long as you use the same variable name in your destructured variables as is in the object it will work perfectly.
+
+// Luckily, you can also easily rename variables as well.If you wanted the name variable to be called firstName instead you can do the following.
+// const person = { name: 'Kyle', age: 25 }
+// const { name: firstName, age } = person
+
+// console.log(firstName)
+// // Kyle
+// console.log(age)
+// // 25
+// This is essentially saying that you are mapping the property name from the object person to a new variable called firstName.
