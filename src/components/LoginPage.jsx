@@ -53,6 +53,7 @@ function LoginPage() {
                     <button
                         onClick={(e) => {
                             e.preventDefault();
+                            login(username, password);
                             navigate("/search");
                             console.log(e);
                         }}>Submit
