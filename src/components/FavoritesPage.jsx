@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 // import { NavLink, useNavigate } from "react-router-dom";
 import {FavoritesContext} from "../context/FavoritesContext";
 // import useAxios from "../hooks/useAxios"
@@ -22,6 +22,7 @@ function FavoritesPage(props){
                             add={add}
                             remove={remove}
                             key={val.gif_id}
+                            isFavorite={true}
                         />
                     )
                     )
