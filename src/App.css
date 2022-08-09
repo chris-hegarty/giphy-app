@@ -1,47 +1,59 @@
-* {
-    border: 1px solid #9b9898;
-    margin: 0;
-    padding: 0%;
-}
+/* * {
+	border: 1px solid #9b9898;
+	margin: 0;
+	padding: 0%;
+} */
 html {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 .flex {
-    display: flex;
+	display: flex;
 }
 .column {
-    flex-direction: column;
+	flex-direction: column;
 }
 .center {
-    justify-content: center;
+	justify-content: center;
 }
 .gap-10 {
-    gap: 10px
+	gap: 10px;
 }
 .gap-20 {
-    gap: 20px
+	gap: 20px;
 }
 .flex-wrap {
-    flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 .flex-basis {
-    flex-basis: 20%
+	flex-basis: 20%;
 }
 .grow {
-    flex-grow: 1;
+	flex-grow: 1;
 }
 .space-between {
-    justify-content: space-between;
+	justify-content: space-between;
 }
 svg {
-    font-size: 2rem;
+	font-size: 2rem;
 }
 .add-favorite svg {
-    fill: #9f9f9f;
+	fill: #9f9f9f;
 }
 .remove-favorite svg {
-    fill: red;
+	fill: red;
 }
 li {
-    list-style-type: none;
+	list-style-type: none;
+}
+.image-relative {
+	position: relative;
+	display: inline-block;
+}
+.fav-heart {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+img {
+	width: 100%;
 }

@@ -4,7 +4,7 @@ export const UserContext = createContext(null);
 
 export function UserProvider(props){
     //state and functionality goes here:
-    const [loggedInUser, setLoggedInUser] = useState(null);
+    const [loggedInUser, setLoggedInUser] = useState("Chris");
 
     const login = useCallback(
         (username) => {

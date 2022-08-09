@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useMemo, useState } from "react";
 import { SearchContext } from "../context/SearchContext";
 import { FavoritesContext } from "../context/FavoritesContext";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 // import { NavLink, useNavigate } from "react-router-dom";
 import useAxios from "../hooks/useAxios"
 import SingleGif from "./SingleGif"
@@ -76,11 +77,15 @@ function SearchPage(){
                 </button>
                 
             </form>
-            <div className="parent-section flex flex-wrap">
+            <div className="parent-section">
+                <ResponsiveMasonry
+                    columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }} >
+                    <Masonry columnsCount={4} gutter={"4"}>
                 {error && error}
                 {gifs &&
                     gifs.length > 0 &&
                 gifs.map((val) => (
+                    
                     <SingleGif 
                         gif={val}
                         add={add}
@@ -93,9 +98,12 @@ function SearchPage(){
                         //YOu can then use this boolean in a conditional in the singleGif component.
                         isFavorite={ favoriteList.includes(val.gif_id)  }
                     />
+                    
                 )
                 )
             }
+                    </Masonry>
+            </ ResponsiveMasonry>
             </div>
         </>
         )
