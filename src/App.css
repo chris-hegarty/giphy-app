@@ -57,3 +57,35 @@ li {
 img {
 	width: 100%;
 }
+
+//colors:
+
+.peach {
+	background-color: #ff6666;
+}
+.violet {
+	background-color: #9933ff;
+}
+.lime {
+	background-color: #00ff99;
+}
+.yellow {
+	background-color: #fff53c;
+}
+.aqua-blue {
+	background-color: #00ccff;
+}
+.text-white {
+	color: #ffffff;
+}
+.background-dark {
+	background-color: #2c2e2c;
+}
+html {
+	background-color: #2c2e2c;
+	height: 100%;
+}
+html,
+body {
+	height: 100%;
+}

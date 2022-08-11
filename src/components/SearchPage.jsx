@@ -32,9 +32,10 @@ function SearchPage(){
 
     return(
         <>
+            <div class="flex">
             <form className="flex">
                 <div className="search-input grow flex column">
-                <label htmlFor="search-bar">Search</label>
+                        <label htmlFor="search-dropdown search-bar">Search</label>
                 <input 
                 value={search}
                 onChange={(e)=>{
@@ -77,6 +78,7 @@ function SearchPage(){
                 </button>
                 
             </form>
+            </div>
             <div className="parent-section">
                 <ResponsiveMasonry
                     columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }} >
