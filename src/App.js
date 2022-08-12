@@ -17,6 +17,14 @@ function App() {
 
       <Menu />
 
+      <header className="flex center">
+        <div>
+          <h1>Giphy Locker</h1>
+          <h2>Find Them. Store Them. Sling Them.</h2>
+        </div>
+
+
+      </header>
 
       <Routes>
 

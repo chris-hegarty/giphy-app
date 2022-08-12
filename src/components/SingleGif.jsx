@@ -6,9 +6,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 function SingleGif({ gif, add, remove, isFavorite,  }){
 const{gif_id, title, url} = gif
 return(
-        
-
-           <div className="image-relative">
+           <div className="image-relative single-gif border-orange-600 border-2">
             <img
                 onClick={(gif) => (gif)}
                 src={url}

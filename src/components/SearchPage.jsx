@@ -10,9 +10,9 @@ function SearchPage(){
 
 //    const navigate = useNavigate();
     const[search, setSearch] = useState("");
-    const{searchResults, setSearchResults} = useContext(SearchContext);
+    const{setSearchResults} = useContext(SearchContext);
     const { favorites, add, remove } = useContext(FavoritesContext);
-    const[rating, setRating] = useState("g");
+    const[rating, setRating] = useState("rating");
     const [url, setUrl] = useState("");
     const { data:gifs, error } = useAxios(url);
     //Here, you are taking the "favorites" array from Favorites Context.
@@ -32,52 +32,53 @@ function SearchPage(){
 
     return(
         <>
-            <div class="flex">
-            <form className="flex">
-                <div className="search-input grow flex column">
-                        <label htmlFor="search-dropdown search-bar">Search</label>
-                <input 
-                value={search}
-                onChange={(e)=>{
-                    setSearch(e.target.value)
-                }}
-                type="search" 
-                name="searchBar" 
-                id="search-bar" 
-                />
-                </div>
-                <div className="rating-submit flex column">
-                <label htmlFor="rating-dropdown">Choose a Rating:</label>
-                <select 
-                name="rating" 
-                id="rating-dropdown" 
-                value={rating}
-                onChange={ 
-                    (e) => {
-                        setRating(e.target.value)
-                    } 
-                }
-                >
-                    <option value="g">G</option>
-                    <option value="pg">PG</option>
-                    <option value="pg-13">PG-13</option>
-                    <option value="r">R</option>
-                </select>
-                </div>
-
-                <button
-                    onClick={(e)=>{
-                        e.preventDefault();
-
-                        setUrl(`${rating}&q=${search}`);
-                        
+            <div className="flex search-section">
+                <form className="flex">
+                    <div className="rating-submit flex column">
+                        <label htmlFor="rating-dropdown"></label>
+                        <select 
+                            placeholder="Rating"
+                            name="rating"
+                            id="rating-dropdown"
+                            value={rating}
+                            onChange={
+                                (e) => {
+                                    setRating(e.target.value)
+                                }
+                            }
+                        >
+                            <option value="rating" disabled selected>Rating</option>
+                            <option value="g">G</option>
+                            <option value="pg">PG</option>
+                            <option value="pg-13">PG-13</option>
+                            <option value="r">R</option>
+                        </select>
+                    </div>
+                    <div className="search-input grow flex column">
+                    <label htmlFor="search-dropdown search-bar"></label>
+                    <input 
+                    placeholder="Search..."
+                    value={search}
+                    onChange={(e)=>{
+                        setSearch(e.target.value)
                     }}
-                    type="submit"
-                    >
-                    SUBMIT
-                </button>
-                
-            </form>
+                    type="search" 
+                    name="searchBar" 
+                    id="search-bar" 
+                    />
+                    </div>
+                    <button
+                        onClick={(e)=>{
+                            e.preventDefault();
+
+                            setUrl(`${rating}&q=${search}`);
+                            
+                        }}
+                        type="submit"
+                        >
+                        SUBMIT
+                    </button>
+                </form>
             </div>
             <div className="parent-section">
                 <ResponsiveMasonry

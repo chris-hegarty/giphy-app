@@ -28,8 +28,11 @@ function Menu(){
     
     return(
         <>
-        <nav className="flex center">
+        <nav className="flex flex-start">
             <ul className="flex gap-20">
+                <li>
+                        <NavLink to={"/search"}><img alt="giphy-logo" src="./images/GIPHY_27.png"></img></NavLink>
+                </li>
         {/* //start here with list items/menu items you want logged in users to see. Note: starting with not logged in users will not work. 
         //For cleaner code, use && pattern.
         //Still need parent element...even though it's in the middle of the page ????????????>?? */}
