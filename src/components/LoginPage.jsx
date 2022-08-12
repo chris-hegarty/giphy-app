@@ -19,7 +19,7 @@ function LoginPage() {
             <form>
                 <div>
                     <label htmlFor="user-name">Username</label>
-                    <input
+                        <input
                         value={username}
                         onChange={(e) => {
                             setUsername(e.target.value);
