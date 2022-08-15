@@ -13,17 +13,20 @@ export function UserProvider(props){
 	//* Your RegisterPage.jsx will call this function.
 	//*The request goes to the route set up in route file, then to model, then response back from model to route
 	const register = useCallback(async (username, password) => {
+        console.log("anything here from UserContext?");
 		try {
 			const response = await axios.put("/api/users/register", {
 				username,
 				password,
 			});
+            console.log(response.data);
 			if (response.data.success) {
 				console.log("Registration successful");
 			} else {
 				console.log(response.data.error);
 			}
 		} catch (err) {
+            
 			console.log(err);
 		}
 	}, []);

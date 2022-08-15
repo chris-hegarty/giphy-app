@@ -4,12 +4,13 @@
 //*3)Add const auth = require("../middleware/auth.middleware"); or whatever the path to the middleware file is.
 
 const express = require("express");
+//See note above about this line:
+const auth = require("../middleware/auth.middleware");
 // *Use the express.Router class to create modular, mountable route handlers. A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a “mini-app”.
 //* It can create router as a module, loads a middleware function in it, defines some routes, and mounts the router module on a path in the main app.
 //* https://expressjs.com/en/guide/routing.html
 const router = express.Router();
-//See note above about this line:
-const auth = require("../middleware/auth.middleware");
+
 //*You'll need the jsonwebtoken package: (https://www.npmjs.com/package/jsonwebtoken)
 const jwt = require("jsonwebtoken");
 //Bring in the register and login functions from the model file:
@@ -20,18 +21,28 @@ const { register, login } = require("../models/users.model");
 //*Build functions that return the response object that you'll use in here.
 //* Those functions, or models, can be written in here, but it's better to write them in separate model files.
 
-//*Create a function to verify username and password requirements.
-//*it will return boolean true if the requirements were met.
+//*For verify, we'll use a GET request
 
-function verifyData(username, password) {
-	if (!username || username.length < 4 || username.length > 20) {
-		return false;
-	}
-	if (!password || password.length < 8 || password.length > 30) {
-		return false;
-	}
-	return true;
-}
+router.get("/verify", auth, (req, res) => {
+	return res.send({
+		success: true,
+		data: {
+			username: req.user.username,
+			id: req.user.id,
+		},
+		error: null,
+	});
+});
+
+//*For logout, we'll use a GET request
+
+router.get("/logout", (req, res) => {
+	//*Delete the jwt cookie(s) and send a response
+	//*Clear it with express.
+	res.clearCookie("jwt");
+
+	return res.send({ success: true, data: null, error: null });
+});
 
 //* For "register" we are creating new tables in the DB, so use PUT:
 
@@ -50,6 +61,7 @@ router.put("/register", async (req, res) => {
 	}
 	//* If the username and password meet the requirements, put them in an object:
 	const resObj = await register(username, password);
+
 	res.send(resObj);
 });
 
@@ -83,27 +95,14 @@ router.post("/login", async (req, res) => {
 	res.send(resObj);
 });
 
-//*For logout, we'll use a GET request
-
-router.get("/logout", (req, res) => {
-	//*Delete the jwt cookie(s) and send a response
-	//*Clear it with express.
-	res.clearCookie("jwt");
-
-	return res.send({ success: true, data: null, error: null });
-});
-
-//*For verify, we'll use a GET request
-
-router.get("/verify", auth, (req, res) => {
-	return res.send({
-		success: true,
-		data: {
-			username: req.user.username,
-			id: req.user.id,
-		},
-		error: null,
-	});
-});
+function verifyData(username, password) {
+	if (!username || username.length < 4 || username.length > 20) {
+		return false;
+	}
+	if (!password || password.length < 8 || password.length > 30) {
+		return false;
+	}
+	return true;
+}
 
 module.exports = router;

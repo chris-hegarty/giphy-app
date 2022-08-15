@@ -14,7 +14,7 @@ function RegisterPage(){
     const [confirm, setConfirm] = useState("");
     //global pieces of state from context file
     const [show, setShow] = useState(false);
-    const {loggedInUser, login, logout} = useContext(UserContext)
+
     //*Add error handling:
     //* You will wrap these in useMemo to store the results.
     //* 1) Check if password requirements met:
@@ -105,15 +105,22 @@ function RegisterPage(){
 							disabled={confirmError || passError || userError}
 							onClick={(e) => {
 								e.preventDefault();
-                                //* If no errors, allow register function to fire:
+								//* If no errors, allow register function to fire:
 								if (!confirmError && !passError && !userError) {
 									register(username, password);
 								}
 							}}
-                            type="submit"
+							type="submit"
 						>
 							Submit
 						</button>
+						<div className="to-login">
+							<p>
+								<NavLink to="/login">
+									Already have an account? Login here.
+								</NavLink>
+							</p>
+						</div>
 					</div>
 				</form>
 			</>

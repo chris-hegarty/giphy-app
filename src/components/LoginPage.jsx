@@ -1,18 +1,15 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState, useMemo } from "react";
+import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserContext";// import {  } from "module";
 
 function LoginPage() {
-
-    //navigate functionality
-    const navigate = useNavigate();
     //local pieces of state
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     // const [show, setShow] = useState(false);
     //global pieces of state from context file
     const [show, setShow] = useState(false);
-    const { loggedInUser, login, logout } = useContext(UserContext)
+    const { login } = useContext(UserContext)
 
     return (
         <>
@@ -55,7 +52,7 @@ function LoginPage() {
                             e.preventDefault();
                             login(username, password);
                             navigate("/search");
-                            console.log(e);
+
                         }}>Submit
                     </button>   
                 </div>

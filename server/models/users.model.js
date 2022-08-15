@@ -10,6 +10,7 @@ async function register(username, password) {
 		const [user] = await query("SELECT * FROM users WHERE users.username = ?", [
 			username,
 		]);
+		console.log(user);
 		if (user) {
 			return {
 				success: false,
@@ -18,13 +19,14 @@ async function register(username, password) {
 			};
 		}
 		//*Now if this returns false, go on to hash the password and query it into the database
-		const hashWord = await brcrypt.hash(password, 10);
+		const hashWord = await bcrypt.hash(password, 10);
 		await query("INSERT INTO users (password,username) VALUES(?,?)", [
-			hashword,
+			hashWord,
 			username,
 		]);
-		return { success: true, data: "Thank you for registering!", error: false };
+		return { success: true, data: "Thank you for registering!", error: null };
 	} catch (err) {
+		console.log(err);
 		return {
 			success: false,
 			data: null,
@@ -62,4 +64,4 @@ async function login(username, password) {
 
 //*Export the functions so you can call them in the routes:
 module.exports.login = login;
-module.exports.register - register;
+module.exports.register = register;
