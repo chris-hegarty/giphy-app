@@ -32,67 +32,91 @@ function RegisterPage(){
         () => confirm !== password || passError,
         [confirm, password, passError]
     )   
-    return(
-        <>
-        <form>
-            <div>
-            <label htmlFor="user-name">Username</label>
-            <input             
-                value={username}
-                onChange={(e) => {
-                setUsername(e.target.value);
-                }}
-                id="user-name"
-                type="text" 
-            />
-            </div>
-            <div>
-            <label htmlFor="password">Password</label>
-            <input             
-                value={password}
-                onChange={ (e) => {
-                setPassword(e.target.value);
-                } }
-                id="password"
-                type={show === true ? "text" : "password"}     
-            />
-            <span>
-                <label htmlFor="check-box">Show Password</label>
-                <input 
-                value={show}
-                onChange={ (e)=>{ setShow(e.target.checked)} }
-                type="checkbox" 
-                name="register-checkbox" 
-                id="check-box" 
-                />
-            </span>
-            </div>
+    return (
+			<>
+				<form>
+					<div>
+						<label htmlFor="user-name">Username</label>
+						<input
+							value={username}
+							onChange={(e) => {
+								setUsername(e.target.value);
+							}}
+							id="user-name"
+							type="text"
+						/>
+					</div>
+					<div
+						id="username-error"
+						className={userError ? "error form-text" : "form-text"}
+					>
+						Username Must Be between 4 and 20 characters.
+					</div>
+					<div>
+						<label htmlFor="password">Password</label>
+						<input
+							value={password}
+							onChange={(e) => {
+								setPassword(e.target.value);
+							}}
+							id="password"
+							type={show === true ? "text" : "password"}
+						/>
+						<span>
+							<label htmlFor="check-box">Show Password</label>
+							<input
+								value={show}
+								onChange={(e) => {
+									setShow(e.target.checked);
+								}}
+								type="checkbox"
+								name="register-checkbox"
+								id="check-box"
+							/>
+						</span>
+					</div>
+					<div
+						id="password-error"
+						className={passError ? "error form-text" : "form-text"}
+					>
+						Password Must Be between 8 and 30 characters
+					</div>
 
-            <div>
-            <label htmlFor="confirm">Confirm Password</label>
-            <input             
-                value={confirm}
-                onChange={(e) => {
-                setConfirm(e.target.value);   
-                }}
-                id="confirm"
-                type={show ? "text" : "password"}
-            />
-            </div>
-            <div>
-            <button 
-                onClick={ (e) => { 
-                e.preventDefault()
-                if(password === confirm){ 
-                    register(username, password)
-                    }
-                } }>Submit
-            </button>
-            </div>
-        </form>
-        </>
-        
-    )
+					<div>
+						<label htmlFor="confirm">Confirm Password</label>
+						<input
+							value={confirm}
+							onChange={(e) => {
+								setConfirm(e.target.value);
+							}}
+							id="confirm"
+							type={show ? "text" : "password"}
+						/>
+					</div>
+					<div
+						id="password-error"
+						className={confirmError ? "error form-text" : "form-text"}
+					>
+						Passwords Must Match
+					</div>
+					<div>
+						<button
+							//* If any errors, set the button to disabled:
+							disabled={confirmError || passError || userError}
+							onClick={(e) => {
+								e.preventDefault();
+                                //* If no errors, allow register function to fire:
+								if (!confirmError && !passError && !userError) {
+									register(username, password);
+								}
+							}}
+						>
+							Submit
+						</button>
+					</div>
+				</form>
+			</>
+		);
 }
 
 export default RegisterPage

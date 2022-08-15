@@ -83,6 +83,16 @@ router.post("/login", async (req, res) => {
 	res.send(resObj);
 });
 
+//*For logout, we'll use a GET request
+
+router.get("/logout", (req, res) => {
+	//*Delete the jwt cookie(s) and send a response
+	//*Clear it with express.
+	res.clearCookie("jwt");
+
+	return res.send({ success: true, data: null, error: null });
+});
+
 //*For verify, we'll use a GET request
 
 router.get("/verify", auth, (req, res) => {
