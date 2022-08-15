@@ -28,9 +28,11 @@ const jwtOptions = {
 	jwtFromRequest: cookieExtractor,
 };
 //* https://www.passportjs.org/packages/passport-jwt/
-//* passport.use(new JwtStrategy(opts, function(jwt_payload, done) {}{
+//* passport.use(new JwtStrategy(opts, function(jwt_payload, done) {}
+//* "payLoad" is object with encrypted information from JWT.
 passport.use(
-	newStrategy(jwtOptions, async (payLoad, done) => {
+	"jwt",
+	new Strategy(jwtOptions, async (payLoad, done) => {
 		//* Set up try catch and tgry to q the db where users.id = payLoad.id
 		try {
 			const [user] = await query("SELECT * FROM users WHERE users.id = ?", [
@@ -46,7 +48,7 @@ passport.use(
 			//*You can just return here
 			return done(null, user);
 		} catch (err) {
-			return done(true, false, "Invalid credentials");
+			return done(true, false, "Invalid credentials provided.");
 		}
 	}),
 );
