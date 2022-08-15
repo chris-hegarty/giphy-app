@@ -110,6 +110,7 @@ function RegisterPage(){
 									register(username, password);
 								}
 							}}
+                            type="submit"
 						>
 							Submit
 						</button>
