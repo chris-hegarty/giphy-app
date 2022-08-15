@@ -19,9 +19,9 @@ async function register(username, password) {
 			};
 		}
 		//*Now if this returns false, go on to hash the password and query it into the database
-		const hashWord = await bcrypt.hash(password, 10);
-		await query("INSERT INTO users (password,username) VALUES(?,?)", [
-			hashWord,
+		const hash = await bcrypt.hash(password, 10);
+		await query("INSERT INTO users (password, username) VALUES(?,?)", [
+			hash,
 			username,
 		]);
 		return { success: true, data: "Thank you for registering!", error: null };
@@ -38,18 +38,24 @@ async function register(username, password) {
 //* Login function
 
 async function login(username, password) {
+	console.log("Checking use model...");
 	try {
 		const [user] = await query("SELECT * FROM users WHERE users.username = ?", [
 			username,
 		]);
+
 		//*Return all the bad things if the username isnt in there:
 		if (!user) {
 			return { success: false, data: null, error: "Invalid username" };
 		}
 		//*Compare the password to the hashed version:
-		const match = await bcrypt.compare(password, user.username);
+		const match = await bcrypt.compare(password, user.password);
 		if (!match) {
-			return { success: false, data: null, error: "Invalid password." };
+			return {
+				success: false,
+				data: null,
+				error: "Invalid password.",
+			};
 		}
 		//*if all the info is good, return the username and user ID in an object:
 		return {
