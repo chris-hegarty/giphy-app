@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState, useMemo } from "react";
+// No longer need useNavigate, but will need NavLink:
+import { NavLink } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 
 function RegisterPage(){
-
-    //navigate functionality
-    const navigate = useNavigate();
+    //*Bring in register function from user context:
+    const {register} = useContext(UserContext)
     //local pieces of state
     const [username, setUsername]= useState("");
     const [password, setPassword]= useState("");    
@@ -15,7 +15,23 @@ function RegisterPage(){
     //global pieces of state from context file
     const [show, setShow] = useState(false);
     const {loggedInUser, login, logout} = useContext(UserContext)
-        
+    //*Add error handling:
+    //* You will wrap these in useMemo to store the results.
+    //* 1) Check if password requirements met:
+    const passError = useMemo(
+        () => password.length < 8 || password.length > 30,
+        [password] 
+    )
+    //* 2) Check if username requirements are met
+    const userError = useMemo(
+        ()=> username.length < 4 || username.length > 20,
+        [username]
+    )
+    //* 3) Check if password confirmation passed:
+    const confirmError = useMemo(
+        () => confirmPassword !== password || passError,
+        [confirmPassword, password, passError]
+    )   
     return(
         <>
         <form>
