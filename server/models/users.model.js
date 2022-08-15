@@ -32,3 +32,34 @@ async function register(username, password) {
 		};
 	}
 }
+
+//* Login function
+
+async function login(username, password) {
+	try {
+		const [user] = await query("SELECT * FROM users WHERE users.username = ?", [
+			username,
+		]);
+		//*Return all the bad things if the username isnt in there:
+		if (!user) {
+			return { success: false, data: null, error: "Invalid username" };
+		}
+		//*Compare the password to the hashed version:
+		const match = await bcrypt.compare(password, user.username);
+		if (!match) {
+			return { success: false, data: null, error: "Invalid password." };
+		}
+		//*if all the info is good, return the username and user ID in an object:
+		return {
+			success: true,
+			data: { username: user.username, id: user.id },
+			error: null,
+		};
+	} catch (err) {
+		return { success: false, data: null, error: "Something went wrong." };
+	}
+}
+
+//*Export the functions so you can call them in the routes:
+module.exports.login = login;
+module.exports.register - register;

@@ -44,4 +44,17 @@ router.put("/register", async (req, res) => {
 	res.send(resObj);
 });
 
+//For the login route we are using the post request:
+router.post("/login", async (req, res) => {
+	const { username, password } = req.body;
+	if (!verifyData(username, password)) {
+		return res.send({
+			success: false,
+			data: null,
+			error: "Username and/or password do not match.",
+		});
+	}
+	const resObj = await login(username, password);
+});
+
 module.exports = router;
