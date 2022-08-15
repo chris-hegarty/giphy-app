@@ -1,4 +1,4 @@
-require("dotenv").config;
+require("dotenv").config();
 const userRoutes = require("./server/routes/users.routes");
 const favoritesRoutes = require("./server/routes/favorites.routes");
 const passport = require("./server/config/passport.config");
@@ -9,7 +9,7 @@ const app = express();
 const PORT = process.env.PORT ?? 8080;
 
 app.use(express.json());
-app.use(express.static(__dirname) + "/build");
+app.use(express.static(__dirname + "/build"));
 //* Implement passport and cookie-parser.
 //* Cookie parser needs to be first.
 app.use(cookieParser());

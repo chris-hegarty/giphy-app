@@ -11,6 +11,8 @@ const pool = mysql.createPool({
 	port: process.env.DB_PORT,
 });
 
+console.log(process.env.DB_DATABASE);
+
 //*set up pool connections:
 
 pool.getConnection((err, connection) => {
@@ -24,12 +26,10 @@ pool.getConnection((err, connection) => {
 			console.error("Database connection limit exceeded");
 		}
 		if (err.code === "ECONNREFUSED") {
-			console.error("Database connection was refused");
+			console.error("Database connection refused");
 		}
 	}
-	if (connection) {
-		connection.release();
-	}
+	if (connection) connection.release();
 });
 
 //*Add promisify and set up query object to avoid callback hell:
