@@ -55,17 +55,10 @@ export function UserProvider(props){
 
      );
 
-     return <UserContext.Provider value={ {loggedInUser, login, logout} } >
+     return <UserContext.Provider value={ {loggedInUser, login, logout, verify, register} } >
      
      {props.children}
 
      </UserContext.Provider>
 
 }
-
-// export function useUser() {
-//   const context = useContext(UserContext);
-//   return context;
-// }
-
-//
