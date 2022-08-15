@@ -8,10 +8,10 @@ export function UserProvider(props){
     //state and functionality goes here:
     const [loggedInUser, setLoggedInUser] = useState("Chris");
     //*add and update functions:
+    
     //*Here is a new register function.
     //* Your RegisterPage.jsx will call this function.
     //*The request goes to the route set up in route file, then to model, then response back from model to route
-
     const register = useCallback( async (username, password)=> {
         try{
             const response = await axios.put("/api/users/register", {
@@ -27,6 +27,21 @@ export function UserProvider(props){
             console.log(err);
         }
     },[]);
+    
+    //*Add verify function
+    //*****This will set your logged in user*****
+    const verify = useCallback( async ()=> {
+        try {
+            const response = await axios.get("/api/users/verify")
+            if(response.data.success){
+                setLoggedInUser(response.data.data)
+            }
+        } catch(err) {
+            console.log(err);
+        } finally {
+            return true
+        }
+    }) 
 
     
 
