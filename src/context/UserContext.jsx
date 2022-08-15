@@ -43,8 +43,6 @@ export function UserProvider(props){
         }
     }) 
 
-    
-
     const login = useCallback(
         (username) => {
             setLoggedInUser(username);
