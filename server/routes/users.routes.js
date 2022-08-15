@@ -3,6 +3,8 @@ const express = require("express");
 //* It can create router as a module, loads a middleware function in it, defines some routes, and mounts the router module on a path in the main app.
 //* https://expressjs.com/en/guide/routing.html
 const router = express.Router();
+//*You'll need the jsonwebtoken package: (https://www.npmjs.com/package/jsonwebtoken)
+const jwt = require("jsonwebtoken");
 //Bring in the register and login functions from the model file:
 const { register, login } = require("../models/users.model");
 
@@ -55,6 +57,23 @@ router.post("/login", async (req, res) => {
 		});
 	}
 	const resObj = await login(username, password);
+	//*IF the username and password come back from the database(model) and make it through the "verify" function
+	//*  take the userid and username and store and hash into jwt using json web token pkg. Remember, the "success" key comes back true or false.
+	//*If it comes back true:
+	if (resObj.success) {
+		//*get the use from response object's data key:
+		const user = resObj.data;
+		//*And make a token using the jsonwebtoken pkg.
+		//* It needs the user, your secret key and any options.(https://www.npmjs.com/package/jsonwebtoken)
+		//* Here, we set it to expire in two days.
+		const token = jwt.sign(user, process.env.SECRET_KEY, {
+			expiresIn: "2 days",
+		});
+		//* Make cookie. Express .cookie() method: https://expressjs.com/en/api.html#res.cookie
+		//*It needs a name as a string, a value (Which is the jwt we just created), and in the options object, we'll set it to httpOnly, meaning it's only available through a call to the server.
+		res.cookie("jwt", token, { httpOnly: true });
+	}
+	res.send(resObj);
 });
 
 module.exports = router;
