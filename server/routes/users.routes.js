@@ -1,8 +1,15 @@
+//* NOTE!!!! For login routes, you’ll need to
+//*1)Set up passport.config.js then
+//*2)Set up auth.middleware.js then
+//*3)Add const auth = require("../middleware/auth.middleware"); or whatever the path to the middleware file is.
+
 const express = require("express");
 // *Use the express.Router class to create modular, mountable route handlers. A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a “mini-app”.
 //* It can create router as a module, loads a middleware function in it, defines some routes, and mounts the router module on a path in the main app.
 //* https://expressjs.com/en/guide/routing.html
 const router = express.Router();
+//See note above about this line:
+const auth = require("../middleware/auth.middleware");
 //*You'll need the jsonwebtoken package: (https://www.npmjs.com/package/jsonwebtoken)
 const jwt = require("jsonwebtoken");
 //Bring in the register and login functions from the model file:
