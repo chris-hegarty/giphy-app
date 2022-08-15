@@ -83,4 +83,17 @@ router.post("/login", async (req, res) => {
 	res.send(resObj);
 });
 
+//*For verify, we'll use a GET request
+
+router.get("/verify", auth, (req, res) => {
+	return res.send({
+		success: true,
+		data: {
+			username: req.user.username,
+			id: req.user.id,
+		},
+		error: null,
+	});
+});
+
 module.exports = router;
