@@ -1,7 +1,6 @@
 import React from "react";
 import { AiOutlineHeart } from 'react-icons/ai';
 import { AiFillHeart } from 'react-icons/ai';
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 function SingleGif({ gif, add, remove, isFavorite,  }){
 const{gif_id, title, url} = gif
@@ -27,11 +26,8 @@ return(
 
             )}     
          </div>
-        
-                
-                                                           
-
-    
+          
+                                                        
     )   
 
 }
