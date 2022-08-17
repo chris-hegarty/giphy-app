@@ -106,7 +106,7 @@ function SearchPage(){
                 )
             }
                     </Masonry>
-            </ ResponsiveMasonry>
+            </ResponsiveMasonry>
             </div>
         </>
         )
