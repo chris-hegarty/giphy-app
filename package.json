@@ -2,9 +2,9 @@
 	"name": "giphy-app",
 	"version": "0.1.0",
 	"private": true,
-	"engines":{
-		"node":"16.x",
-		"npm":"8.x"
+	"engines": {
+		"node": "16.x",
+		"npm": "8.x"
 	},
 	"proxy": "http://localhost:8080/",
 	"dependencies": {
@@ -35,7 +35,7 @@
 	},
 	"scripts": {
 		"start": "node server",
-		"build": "ng build --prod",
+		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
 	},
