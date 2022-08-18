@@ -16,83 +16,95 @@ function LoginPage() {
 				() => password.length < 8 || password.length > 30,
 				[password],
 			);
-			const userError = useMemo(
-				() => username.length < 4 || username.length > 20,
-				[username],
-			);
+	  const userError = useMemo(
+        ()=> username.length < 4 || username.length > 20,
+        [username]
+    )
 
     return (
 			<>
-				<div className="flex center">
+				<main className="main">
 					<form>
-						<div>
-							<label htmlFor="user-name">Username</label>
-							<input
-								value={username}
-								onChange={(e) => {
-									setUsername(e.target.value);
-								}}
-								id="user-name"
-								type="text"
-							/>
-						</div>
-						<div
-							id="userHelp"
-							className={userError ? "error form-text" : "form-text"}
-						>
-							Username Must Be between 4 and 20 characters
-						</div>
-						<div>
-							<label htmlFor="password">Password</label>
-							<input
-								value={password}
-								onChange={(e) => {
-									setPassword(e.target.value);
-								}}
-								id="password"
-								type={show === true ? "text" : "password"}
-							/>
-							<span>
-								<label htmlFor="check-box">Show Password</label>
+						<div className="form-container">
+							<div className="flex column form-element">
+								<label htmlFor="user-name">Username</label>
 								<input
-									value={show}
+									value={username}
 									onChange={(e) => {
-										setShow(e.target.checked);
+										setUsername(e.target.value);
 									}}
-									type="checkbox"
-									name="register-checkbox"
-									id="check-box"
+									id="user-name"
+									type="text"
+									className="rounded-lg bg-white"
 								/>
-							</span>
-						</div>
-						<div
-							id="passwordHelp"
-							className={passError ? "error form-text" : "form-text"}
-						>
-							Password Must Be between 8 and 30 characters
-						</div>
-						<div>
-							<button
-								disabled={passError || userError}
-								onClick={(e) => {
-									e.preventDefault();
-									if (!passError && !userError) {
-										login(username, password);
-									}
-								}}
-							>
-								Submit
-							</button>
-						</div>
-						<div>
-							<p>
-								<NavLink to="/register">
-									Don't have an account? Register here
-								</NavLink>
-							</p>
+								<div
+									id="username-error"
+									className={userError ? "error form-text" : "form-text"}
+								>
+									Username Must Be between 4 and 20 characters.
+								</div>
+							</div>
+
+							<div className="flex column form-element">
+								<label htmlFor="password">Password</label>
+								<input
+									value={password}
+									onChange={(e) => {
+										setPassword(e.target.value);
+									}}
+									id="password"
+									type={show === true ? "text" : "password"}
+									className="rounded-lg"
+								/>
+								<span>
+									<label htmlFor="check-box">Show Password</label>
+									<input
+										value={show}
+										onChange={(e) => {
+											setShow(e.target.checked);
+										}}
+										type="checkbox"
+										name="register-checkbox"
+										id="check-box"
+									/>
+								</span>
+								<div
+									id="password-error"
+									className={passError ? "error form-text" : "form-text"}
+								>
+									Password Must Be between 8 and 30 characters
+								</div>
+							</div>
+							<div>
+									<button
+										//* If any errors, set the button to disabled:
+										disabled={passError || userError}
+										onClick={(e) => {
+											e.preventDefault();
+											//* If no errors, allow register function to fire:
+											if (!passError && !userError) {
+												login(username, password);
+											}
+										}}
+										type="submit"
+									>
+										Submit
+									</button>
+								</div>
+
+
+								
+								<div className="to-login form-element">
+									<p>
+										<NavLink to="/register">
+											Don't have an account? Register here
+										</NavLink>
+									</p>
+								</div>
+							
 						</div>
 					</form>
-				</div>
+				</main>
 			</>
 		);
 }

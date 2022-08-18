@@ -10,7 +10,7 @@ function SearchPage(){
 
 //    const navigate = useNavigate();
     const[search, setSearch] = useState("");
-    const{setSearchResults} = useContext(SearchContext);
+    const{searchResults, setSearchResults} = useContext(SearchContext);
     const { favorites, add, remove } = useContext(FavoritesContext);
     const[rating, setRating] = useState("rating");
     const [url, setUrl] = useState("");
@@ -47,7 +47,7 @@ function SearchPage(){
                                 }
                             }
                         >
-                            <option value="rating" disabled selected>Rating</option>
+                            <option value="rating" disabled>Rating</option>
                             <option value="g">G</option>
                             <option value="pg">PG</option>
                             <option value="pg-13">PG-13</option>
@@ -70,9 +70,7 @@ function SearchPage(){
                     <button
                         onClick={(e)=>{
                             e.preventDefault();
-
                             setUrl(`${rating}&q=${search}`);
-                            
                         }}
                         type="submit"
                         >

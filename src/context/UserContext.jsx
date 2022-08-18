@@ -55,7 +55,7 @@ export function UserProvider(props){
 					username,
 					password,
 				});
-				console.log(response.data);
+				
 				if (response.data.success) {
 					setLoggedInUser(response.data.data);
 				} else {

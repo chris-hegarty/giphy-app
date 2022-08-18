@@ -1,16 +1,15 @@
-import React, {useContext} from "react";
-// import { NavLink, useNavigate } from "react-router-dom";
-import {FavoritesContext} from "../context/FavoritesContext";
-// import useAxios from "../hooks/useAxios"
-import SingleGif from "../components/SingleGif"
+import React, { useContext } from "react";
+import { FavoritesContext } from "../context/FavoritesContext";
+import { UserContext } from "../context/UserContext";
+import SingleGif from "./SingleGif";
 
 //an array to contain the favorites has been created with state in Favorites context.
 // const [favorites, setFavorites]= useState([]);
 //Favorites context with the functions to change the array is imported above.
 
-function FavoritesPage(props){
+function FavoritesPage(){
     const {favorites, add, remove}= useContext(FavoritesContext);
-
+    const { loggedInUser } = useContext(UserContext);
     return(
         <>
         <div className="parent-section flex flex-wrap">
