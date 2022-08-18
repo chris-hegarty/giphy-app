@@ -23,74 +23,76 @@ function LoginPage() {
 
     return (
 			<>
-				<form>
-					<div>
-						<label htmlFor="user-name">Username</label>
-						<input
-							value={username}
-							onChange={(e) => {
-								setUsername(e.target.value);
-							}}
-							id="user-name"
-							type="text"
-						/>
-					</div>
-					<div
-						id="userHelp"
-						className={userError ? "error form-text" : "form-text"}
-					>
-						Username Must Be between 4 and 20 characters
-					</div>
-					<div>
-						<label htmlFor="password">Password</label>
-						<input
-							value={password}
-							onChange={(e) => {
-								setPassword(e.target.value);
-							}}
-							id="password"
-							type={show === true ? "text" : "password"}
-						/>
-						<span>
-							<label htmlFor="check-box">Show Password</label>
+				<div className="flex center">
+					<form>
+						<div>
+							<label htmlFor="user-name">Username</label>
 							<input
-								value={show}
+								value={username}
 								onChange={(e) => {
-									setShow(e.target.checked);
+									setUsername(e.target.value);
 								}}
-								type="checkbox"
-								name="register-checkbox"
-								id="check-box"
+								id="user-name"
+								type="text"
 							/>
-						</span>
-					</div>
-					<div
-						id="passwordHelp"
-						className={passError ? "error form-text" : "form-text"}
-					>
-						Password Must Be between 8 and 30 characters
-					</div>
-					<div>
-						<button
-							disabled={passError || userError}
-							onClick={(e) => {
-								e.preventDefault();
-								if (!passError && !userError) {
-									login(username, password);
-								}
-							}}
+						</div>
+						<div
+							id="userHelp"
+							className={userError ? "error form-text" : "form-text"}
 						>
-							Submit
-						</button>
-					</div>
-					<div>
-						<p>
-							<NavLink to="/register">
-								Don't have an account? Register here
-							</NavLink>
-						</p>
-					</div>
-				</form>
+							Username Must Be between 4 and 20 characters
+						</div>
+						<div>
+							<label htmlFor="password">Password</label>
+							<input
+								value={password}
+								onChange={(e) => {
+									setPassword(e.target.value);
+								}}
+								id="password"
+								type={show === true ? "text" : "password"}
+							/>
+							<span>
+								<label htmlFor="check-box">Show Password</label>
+								<input
+									value={show}
+									onChange={(e) => {
+										setShow(e.target.checked);
+									}}
+									type="checkbox"
+									name="register-checkbox"
+									id="check-box"
+								/>
+							</span>
+						</div>
+						<div
+							id="passwordHelp"
+							className={passError ? "error form-text" : "form-text"}
+						>
+							Password Must Be between 8 and 30 characters
+						</div>
+						<div>
+							<button
+								disabled={passError || userError}
+								onClick={(e) => {
+									e.preventDefault();
+									if (!passError && !userError) {
+										login(username, password);
+									}
+								}}
+							>
+								Submit
+							</button>
+						</div>
+						<div>
+							<p>
+								<NavLink to="/register">
+									Don't have an account? Register here
+								</NavLink>
+							</p>
+						</div>
+					</form>
+				</div>
 			</>
 		);
 }
