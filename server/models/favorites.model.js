@@ -13,12 +13,13 @@ async function add(favorite) {
 			"INSERT INTO favorites (gif_id, user_id, title, url) VALUES (?,?,?,?)",
 			[favorite.gif_id, favorite.user_id, favorite.title, favorite.url],
 		);
-		console.log("Process got here before insertID in favorite model");
-		console.log(insertID);
+		console.log("Process got here before insertId in favorite model");
+		console.log(insertId);
 		//* Send back the newly added item (with the auto-generated ID)
 		return { success: true, data: { ...favorite, id: insertId }, error: null };
 	} catch (err) {
-		console.log("error in catch");
+		console.log("Here is the error in the catch statement:");
+		console.log(err);
 		// set up  return object
 		return {
 			success: false,
