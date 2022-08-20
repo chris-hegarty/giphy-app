@@ -4,7 +4,6 @@ const { add, remove, getByUser, getAll } = require("../models/favorites.model");
 const auth = require("../middleware/auth.middleware");
 
 router.put("/add", auth, async (req, res) => {
-	console.log("anything here in routes put function?");
 	const favorite = req.body;
 	if (!favorite.gif_id || !favorite.title || !favorite.url) {
 		return res.send({
@@ -13,7 +12,9 @@ router.put("/add", auth, async (req, res) => {
 			error: "Invalid data provided",
 		});
 	}
+	console.log("Am i getting a favorite here line 15 route file?");
 	console.log(favorite);
+	console.log(req.user.id);
 	const resObj = await add({ ...favorite, user_id: req.user.id });
 	console.log(resObj);
 	return res.send(resObj);

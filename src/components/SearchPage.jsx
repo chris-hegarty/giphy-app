@@ -83,9 +83,9 @@ function SearchPage(){
                     columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 4 }} >
                     <Masonry columnsCount={4} gutter={"4"}>
                 {error && error}
-                {gifs &&
-                    gifs.length > 0 &&
-                gifs.map((val) => (
+                {searchResults &&
+                    searchResults.length > 0 &&
+                searchResults.map((val) => (
                     
                     <SingleGif 
                         gif={val}
