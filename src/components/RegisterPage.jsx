@@ -1,7 +1,6 @@
-import { response } from "express";
 import React, { useContext, useState, useMemo } from "react";
 // No longer need useNavigate, but will need NavLink:
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 function RegisterPage() {
@@ -14,6 +13,7 @@ function RegisterPage() {
 	const [confirm, setConfirm] = useState("");
 	//global pieces of state from context file
 	const [show, setShow] = useState(false);
+	const navigate = useNavigate();
 
 	//*Add error handling:
 	//* You will wrap these in useMemo to store the results.
@@ -46,7 +46,7 @@ function RegisterPage() {
 								}}
 								id="user-name"
 								type="text"
-								className="rounded-lg bg-white"
+								className="rounded-lg bg-white p-2"
 							/>
 							<div
 								id="username-error"
@@ -65,7 +65,7 @@ function RegisterPage() {
 								}}
 								id="password"
 								type={show === true ? "text" : "password"}
-								className="rounded-lg"
+								className="rounded-lg p-2"
 							/>
 							<span>
 								<label htmlFor="check-box">Show Password</label>
@@ -96,7 +96,7 @@ function RegisterPage() {
 								}}
 								id="confirm"
 								type={show ? "text" : "password"}
-								className="rounded-lg"
+								className="rounded-lg p-2"
 							/>
 							<div
 								id="password-error"
@@ -115,21 +115,13 @@ function RegisterPage() {
 									//* If no errors, allow register function to fire:
 									if (!confirmError && !passError && !userError) {
 										register(username, password);
+										navigate("/login");
 									}
 								}}
 								type="submit"
 							>
 								Submit
 							</button>
-						</div>
-						<div className="to-login form-element">
-							<p>
-								{response.data.success && (
-									<NavLink to="/login">
-										Thank you for registering?! Click here to login.
-									</NavLink>
-								)}
-							</p>
 						</div>
 					</div>
 				</form>
