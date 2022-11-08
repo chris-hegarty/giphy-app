@@ -1,32 +1,30 @@
-
 import React, { useState, createContext, useCallback } from "react";
 //*need to add axios here:
 import axios from "axios";
 export const UserContext = createContext(null);
 
-export function UserProvider(props){
+export function UserProvider(props) {
 	//state and functionality goes here:
-	const [loggedInUser, setLoggedInUser] = useState(null);
+	const [loggedInUser, setLoggedInUser] = useState("Chris");
 	//*add and update functions:
 
 	//*Here is a new register function.
 	//* Your RegisterPage.jsx will call this function.
 	//*The request goes to the route set up in route file, then to model, then response back from model to route
 	const register = useCallback(async (username, password) => {
-        console.log("anything here from UserContext?");
+		console.log("anything here from UserContext?");
 		try {
 			const response = await axios.put("/api/users/register", {
 				username,
 				password,
 			});
-            console.log(response.data);
+			console.log(response.data);
 			if (response.data.success) {
 				console.log("Registration successful");
 			} else {
 				console.log(response.data.error);
 			}
 		} catch (err) {
-            
 			console.log(err);
 		}
 	}, []);
@@ -55,7 +53,7 @@ export function UserProvider(props){
 					username,
 					password,
 				});
-				
+
 				if (response.data.success) {
 					setLoggedInUser(response.data.data);
 				} else {
